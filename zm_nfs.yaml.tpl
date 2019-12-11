@@ -1,3 +1,20 @@
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: zm-nfs
+#  labels:
+#    app: zm-nfs
+#spec:
+#  ports:
+#  - name: zm-nfs
+#    protocol: TCP
+#    port: 2049
+#    targetPort: 2049
+#    #nodePort: 32049
+#  type: NodePort
+#  selector:
+#    app: zm-nfs
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -5,15 +22,12 @@ metadata:
   labels:
     app: zm-nfs
 spec:
-  ports:
-  - name: zm-nfs
-    protocol: TCP
-    port: 2049
-    targetPort: 2049
-    #nodePort: 32049
-  type: NodePort
   selector:
     app: zm-nfs
+  ports:
+    - protocol: TCP
+      port: 2049
+      targetPort: 2049
 ---
 apiVersion: apps/v1
 kind: Deployment

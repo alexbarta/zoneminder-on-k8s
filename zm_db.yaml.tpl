@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -5,15 +6,12 @@ metadata:
   labels:
     app: zm-db
 spec:
-  ports:
-  - name: zm-db
-    protocol: TCP
-    port: 3306
-    targetPort: 3306
-    #nodePort: 33306
-  type: NodePort
   selector:
     app: zm-db
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -37,5 +35,5 @@ spec:
           value: zoneminder
         ports:
         - containerPort: 3306
-        securityContext:
-          privileged: true
+        #securityContext:
+        #  privileged: true

@@ -50,8 +50,6 @@ spec:
         - containerPort: 80
         securityContext:
           privileged: true
-      nodeSelector:
-        kubernetes.io/hostname: edge
         
 # to get labels of node      
 # # kubectl get no --show-labels

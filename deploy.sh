@@ -59,10 +59,11 @@ kubectl exec -ti ${zm_nfs_pod_name} server-run status
 echo "[`date`] - config zm_nfs server done"
 
 nfs_hostport=`kubectl get svc | grep "zm-nfs" | awk '{print $5}' | sed 's/2049:\|\/TCP//g'`
-nfs_hostname=`kubectl get pod -o wide | grep "zm-nfs-" | awk '{print $7}'`
-nfs_hostip=`getent hosts ${nfs_hostname} | awk '{print $1}'`
+#nfs_hostname=`kubectl get pod -o wide | grep "zm-nfs-" | awk '{print $7}'`
+nfs_hostname="zm-nfs"
+#nfs_hostip=`getent hosts ${nfs_hostname} | awk '{print $1}'`
+nfs_hostip="zm-nfs"
 echo "[`date`] - zm_nfs host ip:port = ${nfs_hostip}:${nfs_hostport}"
-
 
 #--------------------------------------------------------
 # Database
@@ -86,8 +87,10 @@ while true; do
 done
 
 db_hostport=`kubectl get svc | grep "zm-db" | awk '{print $5}' | sed 's/3306:\|\/TCP//g'`
-db_hostname=`kubectl get pod -o wide | grep "zm-db-" | awk '{print $7}'`
-db_hostip=`getent hosts ${db_hostname} | awk '{print $1}'`
+#db_hostname=`kubectl get pod -o wide | grep "zm-db-" | awk '{print $7}'`
+#db_hostip=`getent hosts ${db_hostname} | awk '{print $1}'`
+db_hostname="zm-db"
+db_hostip="zm-db"
 echo "[`date`] - zm_database host ip:port = ${db_hostip}:${db_hostport}"
 
 
